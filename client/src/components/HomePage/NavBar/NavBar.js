@@ -17,16 +17,16 @@ const NavBar = () => {
     <Link to={"/home"}>Home</Link>
   </li>
   <li>
-    <Link to={"/createprofile"}>Create Profile</Link>
-  </li>
-  <li>
-    <Link to={"/signin"}>Sign in</Link>
+    <Link to={"/about"}>About</Link>
   </li>
   <li>
     <Link to={"/contact"}>Contact</Link>
   </li>
   <li>
-    <Link to={"/invitefriends"}>Invite friends</Link>
+    <Link to={"/signup"}>Sign-up</Link>
+  </li>
+  <li>
+    <Link to={"/signin"}>Sign-in</Link>
   </li>
 </ul>
 <div className="hamburger" onClick={handleClick}>
