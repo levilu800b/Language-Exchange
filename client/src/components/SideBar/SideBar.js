@@ -24,7 +24,7 @@ const items = [
 			{
 				key: "message",
 				icon: <UsergroupAddOutlined />,
-				label: "message",
+				label: "Message",
 			},
 		],
 	},
@@ -45,7 +45,7 @@ const items = [
 	{
 		key: "events",
 		icon: <CalendarOutlined />,
-		label: "events",
+		label: "Events",
 		children: [
 			{
 				key: "create-events",

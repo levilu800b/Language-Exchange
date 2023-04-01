@@ -118,11 +118,11 @@ const EventsList = () => {
 									<p>
 										<br />
 										<span className="span_text">
-											Link: <a href={event.link}> Link </a>
+											Link: <a href={event.link} className="span_des" > Link </a>
 										</span>
 									</p>
 									<p>
-										<span className="span_text">full name: </span>{" "}
+										<span className="span_text">Full name: </span>{" "}
 										<span className="span_des">
 										{`${event.user_firstname} ${event.user_secondname}`}
 										</span>
