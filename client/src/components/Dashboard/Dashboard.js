@@ -1,50 +1,62 @@
-import React, { useState, useEffect } from "react";
-// import "antd/dist/reset.css";
-// import "../assets/css/general.css";
+import React, { useState } from "react";
 import { Layout } from "antd";
-import { Routes, Route } from "react-router-dom";
-import Sidebar from "../SideBar/SideBar";
-import ContactForm from "../components/users/AddUsers";
-import UserList from "../components/users/ListUsers";
+import Sidebar from "../../components/SideBar/SideBar";
+import Profile from "../../components/profile/Profile";
+import UserLists from "../../components/ListUsers/ListUsers";
+import SearchCity from "../../components/SearchCity/SearchCity";
+import SearchLanguage from "../../components/SearchLanguage/SearchLanguage";
+import SearchCountry from "../../components/SearchCountry/SearchCountry";
+import CreateEvents from "../../components/CreateEvents/CreateEvents";
+import EventLists from "../../components/EventLists/EventLists";
+import Manage_profile from "../../components/manage-profile/Manage_profile";
+import Logout from "../../components/Logout/Logout";
+import Massages from "../../components/massages/Massage";
+import Friends from "../../components/massages/Users/Friends";
 
 const { Content } = Layout;
 
-function Dashboard() {
-	const [users, setUsers] = useState([]);
+function Head({ setAuth }) {
+	const [selectedMenu, setSelectedMenu] = useState("");
 
-	useEffect(() => {
-		fetch("/api")
-			.then((res) => res.json())
-			.then((data) => setUsers(data));
-	}, []);
+	const handleMenuClick = (key) => {
+		setSelectedMenu(key);
+	};
 
-	const AddUser = (video, id) => {
-		video.id = id;
-		setUsers([...users, video]);
+	const renderContent = () => {
+		switch (selectedMenu) {
+			case "profile":
+				return <Profile setAuth={setAuth} />;
+			case "user-lists":
+				return <UserLists />;
+			case "search-city":
+				return <SearchCity />;
+			case "search-language":
+				return <SearchLanguage />;
+			case "search-country":
+				return <SearchCountry />;
+			case "create-events":
+				return <CreateEvents />;
+			case "event-lists":
+				return <EventLists />;
+				case "logout":
+				return <Logout setAuth={setAuth} />;
+			case "massages":
+				return <Massages />;
+			case "friends":
+				return <Friends />;
+			default:
+				return <Manage_profile />;
+		}
 	};
 
 	return (
-		<Layout>
-			<Layout>
-				<Sidebar />
-				<Content className="content">
-					<Routes>
-						{/* <Route path="/login" element={<DashboardLogin />} />
-						<Route path="/signup" element={<DashboardSignup />} /> */}
-						<Route
-							path="/adduser/addUser"
-							element={<ContactForm AddUsers={AddUser} />}
-						/>
-
-						<Route
-							path="/users/listUsers"
-							element={<UserList users={users} />}
-						/>
-					</Routes>
-				</Content>
+		<Layout style={{ minHeight: "100vh" }}>
+			<Sidebar onMenuClick={handleMenuClick} />
+			<Layout className="site-layout ">
+				<Content  className="main_content">{renderContent()}</Content>
 			</Layout>
 		</Layout>
 	);
 }
 
-export default Dashboard;
+export default Head;

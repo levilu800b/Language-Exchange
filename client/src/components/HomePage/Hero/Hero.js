@@ -1,14 +1,14 @@
 import React from "react";
 import "../Hero/HeroStyle.css";
-import bg1 from "../../../assets/bg1.jpg";
+import bg1 from "../../../assets/background1.jpeg";
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="hero">
 <div className="mask">
-<img className="into-img" src={bg1} alt="backgroungImg" />
+<img className="hero-img"  src={bg1} alt="backgroungImg" />
 </div>
-<div className="content">
+<div className="content_hero">
     <p>Hi ! , Welcome To Our Website</p>
     <h1>Languages Exchange.</h1>
     <div>

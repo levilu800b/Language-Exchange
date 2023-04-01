@@ -1,0 +1,140 @@
+.event_conte{
+    margin-top: 5.7rem;
+}
+.text-message {
+	display: flex;
+}
+
+.contentMessage-message {
+}
+.container_all-message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin: auto;
+	width: 65%;
+}
+.inputsearch{
+	font-size: 16px;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 100%;
+	text-align: left;
+
+}
+.search-container{
+	display: flex;
+	flex-direction: row;
+	width: auto;
+	justify-content: space-around
+	/* margin-bottom: 10px; */
+}
+.overall_detail-message {
+	width: 80%;
+	height: auto;
+	background-color: #efeeee;
+	display: flex;
+}
+.img-message {
+	margin: 1rem 2rem 0 2.5rem;
+	width: 100px;
+	height: 100px;
+	line-height: 15px;
+	font-size: 1rem;
+	border-radius: 50%;
+	background-color: #0077B5;
+}
+
+.text-message {
+	display: flex;
+	margin-top: 0.5rem;
+	/* margin-left: 2rem; */
+	font-size: 16px;
+	font-weight: 300;
+	text-align:left;
+}
+.text-message h2 {
+	margin-bottom: 2rem;
+	color: #000;
+}
+.text-message p {
+	color: #000;
+}
+.text-message span {
+	margin-left: 2rem;
+}
+.Native {
+align-content: start;
+/* border: pink 2px solid; */
+}
+.Nav2{
+
+}
+.overall_detail-message{
+	background-color: #0077B5;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+	align-items: center;
+}
+.span_text{
+font-weight: bold;
+}
+.span_des{
+	color: #ffffff;
+
+}
+@media screen and (max-width :640px){
+	.text-message {
+		display: flex;
+		margin-top: 0.5rem;
+		flex-direction: row;
+		/* margin-left: 3rem; */
+		font-size: 10px;
+		justify-content: right;
+		font-weight: 300;
+	}
+	.overall_detail-message {
+		/* width: 80%; */
+		flex-wrap: wrap;
+		justify-content: space-between;
+         margin-right: 20px;
+		 flex-direction: column-reverse;
+		/* flex-direction: row; */
+		align-items: center;
+	}
+	.Native{
+		display: flex;
+		flex-direction: column-reverse;
+		/* margin-right: 30px; */
+	}
+	.Nav2{
+		margin-right: 30px;
+
+align-items: stretch;
+	}
+.event_conte{
+	width: 20rem;
+}
+.img-message {
+	width: 50px;
+	height: 50px;
+}
+.search-container{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+	width: 50px;
+}
+.container_all-message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+}

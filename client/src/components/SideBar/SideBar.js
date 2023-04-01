@@ -1,92 +1,131 @@
+import React , { useState } from "react";
+import { Menu, Layout } from "antd";
 import {
 	LogoutOutlined,
 	SettingOutlined,
-	UsergroupAddOutlined,
+	CalendarOutlined,
 	UserSwitchOutlined,
 	OrderedListOutlined,
 	SearchOutlined,
 	DashboardOutlined,
 	ProfileOutlined,
+	UsergroupAddOutlined,
 } from "@ant-design/icons";
-import { Menu, Layout } from "antd";
-// import Link from "antd/es/typography/Link";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import "./SideBar.css";
 const { Sider } = Layout;
 
-function getItem(label, key, icon, children, type) {
-	return {
-		key,
-		icon,
-		children,
-		label,
-		type,
-	};
-}
-
 const items = [
-	getItem("Dashboard", "dashboard", <DashboardOutlined />, [
-		getItem(<Link to="/profile">Profile</Link>, "profile", <ProfileOutlined />),
-		getItem(<Link to="/logout">Logout</Link>, "logout", <LogoutOutlined />),
-	]),
-	getItem("Users management", "users", <UserSwitchOutlined />, [
-		getItem(
-			<Link to="/adduser/adduser">Add users</Link>,
-			"post",
-			<UsergroupAddOutlined />
-		),
-		getItem(
-			<Link to="/users/listUsers">List of users</Link>,
-			"list",
-			<OrderedListOutlined />
-		),
-	]),
-	getItem("Search for users", "search", <SearchOutlined />, [
-		getItem(
-			<Link to="/users/language">Search by language</Link>,
-			"search",
-			<SearchOutlined />
-		),
-		getItem(
-			<Link to="/users/country">Search by country</Link>,
-			"search",
-			<SearchOutlined />
-		),
-		getItem(
-			<Link to="/users/city">Search by city</Link>,
-			"search",
-			<SearchOutlined />
-		),
-	]),
-	getItem("Settings", "setting", <SettingOutlined />, [getItem("Option", "9")]),
+	{
+		key: "dashboard",
+		icon: <DashboardOutlined />,
+		label: "Dashboard",
+		children: [
+			{ key: "profile", icon: <ProfileOutlined />, label: "Profile" },
+			{
+				key: "message",
+				icon: <UsergroupAddOutlined />,
+				label: "message",
+			},
+		],
+	},
+
+	{
+		key: "users",
+		icon: <UserSwitchOutlined />,
+		label: "Users",
+		children: [
+			{
+				key: "user-lists",
+				icon: <OrderedListOutlined />,
+				label: "List of Users",
+			},
+		],
+	},
+
+	{
+		key: "events",
+		icon: <CalendarOutlined />,
+		label: "events",
+		children: [
+			{
+				key: "create-events",
+				icon: <CalendarOutlined />,
+				label: "Create Events",
+			},
+			{
+				key: "event-lists",
+				icon: <OrderedListOutlined />,
+				label: "List of Events",
+			},
+		],
+	},
+
+
+	{
+		key: "search",
+		icon: <SearchOutlined />,
+		label: "Search for users",
+		children: [
+			{
+				key: "search-language",
+				icon: <SearchOutlined />,
+				label: "Search by language",
+			},
+			{
+				key: "search-country",
+				icon: <SearchOutlined />,
+				label: "Search by country",
+			},
+			{ key: "search-city", icon: <SearchOutlined />, label: "Search by city" },
+		],
+	},
+	{
+		key: "setting",
+		icon: <SettingOutlined />,
+		label: "Settings",
+		children: [{ key: "option", label: "Option" }],
+	},
+	{ key: "logout", icon: <LogoutOutlined />, label: "Logout" },
 ];
 
-const rootSubmenuKeys = ["dashboard", "users", "search", "setting"];
+const Sidebar = ({ onMenuClick }) => {
+	const renderMenuItems = (menuItems) =>
+		menuItems.map((menuItem) =>
+			menuItem.children ? (
+				<Menu.SubMenu
+					key={menuItem.key}
+					icon={menuItem.icon}
+					title={menuItem.label}
+				>
+					{renderMenuItems(menuItem.children)}
+				</Menu.SubMenu>
+			) : (
+				<Menu.Item
+					key={menuItem.key}
+					icon={menuItem.icon}
+					onClick={() => onMenuClick(menuItem.key)}
+				>
+					{menuItem.label}
+				</Menu.Item>
+			)
+		);
+		const [collapsed, setCollapsed] = useState(false);
 
-export default function Sidebar() {
-	const [openKeys, setOpenKeys] = useState(["search", "users", "dashboard"]);
-	const onOpenChange = (keys) => {
-		const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-		if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-			setOpenKeys(keys);
-		} else {
-			setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-		}
-	};
 	return (
-		<div>
-			<Sider>
-				<Menu
-					mode="inline"
-					openKeys={openKeys}
-					onOpenChange={onOpenChange}
-					style={{
-						width: 256,
-					}}
-					items={items}
-				/>
-			</Sider>
-		</div>
+<Sider className="sider" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+{/* <div
+          style={{
+            height: 32,
+            margin: 16,
+            background: "rgba(255, 255, 255, 0.2)",
+          }}
+        /> */}
+	<Menu mode="inline"  theme="dark"  className="menu_cont">
+				{renderMenuItems(items)}
+			</Menu>
+		</Sider>
 	);
-}
+};
+
+export default Sidebar;
+//how to push branch to github=>git push -u origin master
